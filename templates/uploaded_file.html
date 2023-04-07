@@ -24,6 +24,23 @@
             display: block;
             font-size: 14px;
         }
+        
+        /* === 背景色 02 === */
+        .c_change_01{
+          background-color: #8734cd;
+          background-image: linear-gradient(315deg, #8734cd 0%, #b32daf 33%, #d72796 66%, #d92794 100%);
+        }
+
+         #t_01 {
+        }
+
+        .off_v {
+            display: none;
+        }
+
+        .go_img{
+            display: block;
+        }
     
         @media screen and (max-width: 480px) {
     
@@ -31,14 +48,41 @@
                 text-align: center;
                 font-size: 18px;
             }
-    
+
+        /* === 背景色 02 === */
+        .c_change_01{
+           background-color: #8734cd;
+           background-image: linear-gradient(315deg, #8734cd 0%, #b32daf 33%, #d72796 66%, #d92794 100%);
         }
+
+        #t_01 {
+        }
+        
+        .off_v {
+            display: none;
+        }
+
+        .go_img{
+            display: block !important;
+        }
+    
+    }
     </style>
 
 </head>
 <body>
     
     <h1>CE 証明書発行ページ</h1>
+
+    <button class="test_btn_01">背景色 02 paidy風</button>
+    <button id="test_btn_02">こんなレイアウト良いな</button>
+
+    <!-- こんな感じも良いな -->
+    <div id="t_01" style="display:none;">
+        <img src="/static/image/site/s_02.png">
+    </div>
+
+
 
     <div class="certificate-container">
         <div class="header">
@@ -66,5 +110,32 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script type="text/javascript" src="{{ url_for('static', filename='js/result.js') }}"></script>
+
+    <script>
+
+        const view_body = document.querySelector('.certificate-container');
+        const test_btn_01 = document.querySelector('.test_btn_01');
+
+        const test_btn_02 = document.getElementById('test_btn_02');
+        const t_01 = document.getElementById('t_01');
+
+        test_btn_01.addEventListener('click', function(){
+            view_body.classList.toggle('c_change_01');
+        });
+
+        /* === 表示・非表示 === */
+        test_btn_02.addEventListener('click', function(){
+            if(t_01.style.display === 'none') {
+                t_01.style.display = 'block';
+
+            } else {
+                t_01.style.display = 'none';
+            }
+
+        });
+    
+
+    </script>
+
 </body>
 </html>
