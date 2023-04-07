@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
+    
+    <title>NFL タイトル</title>
+
+    <style>
+        #ce_result {
+            text-align: center;
+            font-size: 24px;
+        }
+    
+        #s_img {
+            width: 20%;
+            height: auto;
+        }
+    
+        #s_span {
+            display: block;
+            font-size: 14px;
+        }
+    
+        @media screen and (max-width: 480px) {
+    
+            #ce_result {
+                text-align: center;
+                font-size: 18px;
+            }
+    
+        }
+    </style>
+
+</head>
+<body>
+    
+    <h1>CE 証明書発行ページ</h1>
+
+    <div class="certificate-container">
+        <div class="header">
+            <img src="/static/image/site/logo.png" alt="Certificate Logo">
+            <h1 class="certificate-title">CEC NFT</h1>
+        </div>
+    
+    
+        <div class="body">
+            <p>This is to certify that <span class="recipient-name">[Recipient Name]</span> has successfully completed the
+                course on <span class="course-name">[Course Name]</span>.</p>
+            <p>Presented on <span class="date">[Date]</span>.</p>
+        </div>
+    
+        <p>
+            <img src="/static/image/{{filename}}" id="s_img">
+            <span id="s_span">※画像をスマホアプリでかざしてみてください。</span>
+        </p>
+        <p id="ce_result">XXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+    
+        <div class="footer">
+            <p>Issued by <span class="issuer-name">[Issuer Name]</span>.</p>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/result.js') }}"></script>
+</body>
+</html>

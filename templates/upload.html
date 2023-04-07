@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 
+    <link rel="stylesheet" href="./css/style.css">
+    -->
+
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <script src="https://unpkg.com/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <title>CE NFT 01</title>
+
+    <style>
+        #nft_btn {
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- 
+    <h1>画像アップロード</h1>
+
+    
+    <form action="{{ url_for('upload') }}" method="POST" enctyep="multipart/form-data">
+        <input type="file" name="up_file">  
+        <input type="submit" value="アップロード">
+    </form>
+    -->
+
+
+    <div id="app">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="hero">
+                <div class="hero-content">
+    
+                    <!-- 英語　<h1>Get your own NFT now</h1> -->
+                    <!-- 日本語 --->
+                    <h1>CEを使って10秒で、NFTが作成できる。</h1>
+    
+                    <!-- 英語 -->
+                    <!-- <p>Create and trade your unique NFTs on our platform</p> -->
+    
+                    <!-- 日本語 -->
+                    <p>画像をアップロードして、NFTを作成してみよう。</p>
+    
+                    <!-- 
+                        <button class="cta">Create NFT</button>
+                        -->
+    
+                    <div id="app">
+                                                                               
+                        <form class="image-upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+    
+                            <!-- 
+                                <h2>画像をアップロードする</h2>
+                                -->
+    
+                            <div class="form-group">
+    
+                                <!-- 
+                                    <label for="file-input">ファイルを選択してください</label>
+                                    -->
+                                
+                                 <!--    
+                                <input type="file" id="file-input" name="image" @change="handleFileUpload" class="cta">
+                                --->
+
+                                <input type="file" name="up_file" id="file-input" @change="handleFileUpload" class="cta">
+
+                            </div>
+                            <div class="form-group">
+  
+                                <button type="submit" class="cta" :disabled="!isValid" id="nft_btn">Create NFT</button>
+                             
+                                <!-- 
+                                <input type="submit" class="cta" :disabled="!isValid" id="nft_btn" value="Create NFT">
+                                -->
+
+                            </div>
+                        </form>
+                        <div class="image-preview">
+                            <h3>プレビュー</h3>
+                            <img v-if="imageUrl" :src="imageUrl" alt="プレビュー">
+                        </div>
+                    </div>
+    
+                </div>
+            </section>
+            <section class="features">
+                <div class="feature">
+                    <i class="fas fa-paint-brush"></i>
+                    <h2>オリジナル デジタルアート</h2>
+                    <p>NFT作成ツールを使用して、アートに命を吹き込み、ユニークなものにしましょう.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-credit-card"></i>
+                    <h2>NFT 作品を売る</h2>
+                    <p>NFT を売りに出して、暗号通貨で利益を上げましょう.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-users"></i>
+                    <h2>DAO コミュニティ</h2>
+                    <p>活発なコミュニティで他のクリエイターやコレクターとつながりましょう.</p>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2023 CE NFT_App</p>
+        </footer>
+    </div>
+    
+    <!-- 
+    <script src="https://kit.fontawesome.com/1234567890.js" crossorigin="anonymous"></script>
+    -->
+
+    <script>
+
+
+            // ========================= とりあえず　コメントアウト 2023_04_06  
+            // Vue.js
+        /*
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    nftName: '',
+                    nftDescription: '',
+                    nftImage: null
+                },
+                methods: {
+                    createNft: function () {
+                        // ここにNFTを作成する処理を実装する
+                        console.log('NFT created');
+                    }
+                }
+            });
+            
+ 
+            // jQuery
+            $(document).ready(function () {
+                $('#nft-image').on('change', function () {
+                    var imageFile = $(this)[0].files[0];
+                    var imageUrl = URL.createObjectURL(imageFile);
+                    app.nftImage = imageUrl;
+                });
+ 
+                $('#create-nft').on('click', function () {
+                    app.createNft();
+                });
+            });
+        
+        */
+
+    </script>
+    
+    <script>
+        
+        new Vue({
+            el: '#app',
+            data: {
+                imageUrl: null,
+                file: null
+            },
+            computed: {
+                isValid() {
+                    return !!this.file;
+                }
+            },
+            methods: {
+                handleFileUpload(e) {
+                    this.file = e.target.files[0];
+                    this.imageUrl = URL.createObjectURL(this.file);
+                }
+            }
+        });
+
+    </script>
+    
+    <script>
+
+        /*
+        $('.image-upload-form').submit(function (e) {
+            e.preventDefault();
+
+            var formData = new FormData();
+            formData.append('up_file', $('#file-input')[0].files[0]);
+
+            $.ajax({
+                url: '/upload',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    alert('アップロードが完了しました');
+                },
+                error: function (xhr, status, error) {
+                    alert('エラーが発生しました: ' + error);
+                }
+            });
+        });
+        */
+
+    </script>
+
+    
+</body>
+</html>
